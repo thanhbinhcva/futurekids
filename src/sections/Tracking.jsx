@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // 👈 thêm dòng này
+import { useNavigate } from "react-router-dom";
 import Warehouse from "../assets/Warehouse.jpg";
 import { GiCardboardBox } from "react-icons/gi";
 

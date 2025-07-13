@@ -15,7 +15,9 @@ import ShipmentDetail from "./components/ShipmentDetail";
 import AdminDashboard from "./components/AdminDashboard";
 import ShipmentForm from "./components/ShipmentForm";
 import ClientsPage from "./components/Client";
-import TrackingPage from "./components/Tracking";
+import TrackingList from "./components/TrackingList";
+import TrackingPage from "./components/TrackingPage";
+import ClientLayout from "./layout/ClientLayout";
 
 const HomePage = () => (
   <>
@@ -84,11 +86,19 @@ const App = () => {
           } 
         />
         <Route 
+          path="/tracking" 
+          element={
+              <ClientLayout>
+                <TrackingList />
+              </ClientLayout>
+          } 
+        />
+        <Route 
           path="/tracking/:code" 
           element={
-              <AdminLayout>
-                <TrackingPage />
-              </AdminLayout>
+            <ClientLayout>
+              <TrackingPage />
+            </ClientLayout>
           } 
         />
       </Routes>

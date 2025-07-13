@@ -21,11 +21,11 @@ const Header = () => {
   };
 
   const navItems = [
-    { label: "Home", path: "home" },
-    { label: "About", path: "about" },
-    { label: "Tracking", path: "tracking" },
-    { label: "Services", path: "services" },
-    { label: "Contact", path: "contact" },
+    { label: "Trang chủ", path: "home" },
+    { label: "Về chúng tôi", path: "about" },
+    { label: "Tra cứu", path: "tracking" },
+    { label: "Dịch vụ", path: "services" },
+    { label: "Liên hệ", path: "contact" },
   ];
 
   // 👇 Auto close dropdown khi click ra ngoài
@@ -53,11 +53,24 @@ const Header = () => {
       </h1>
 
       {/* Menu items */}
-      <ul className="lg:flex justify-center items-center gap-6 hidden">
-        {navItems.map(({ label, path }) => (
+    <ul className="lg:flex justify-center items-center gap-6 hidden">
+      {navItems.map(({ label, path }) => {
+        if (label === "Tra cứu") {
+          return (
+            <a
+              key={path}
+              href="/tracking"
+              className="text-black uppercase font-bold cursor-pointer p-3 rounded-full hover:bg-red-400 hover:text-black text-[15px]"
+            >
+              {label}
+            </a>
+          );
+        }
+
+        return (
           <Link
             key={path}
-            className="text-black uppercase font-bold cursor-pointer p-3 rounded-full hover:bg-blue-500 hover:text-black text-[15px]"
+            className="text-black uppercase font-bold cursor-pointer p-3 rounded-full hover:bg-red-400 hover:text-black text-[15px]"
             duration={500}
             to={path}
             spy={true}
@@ -66,8 +79,9 @@ const Header = () => {
           >
             {label}
           </Link>
-        ))}
-      </ul>
+        );
+      })}
+    </ul>
 
       {/* Notification + Avatar + Dropdown */}
       <div className="hidden lg:flex items-center gap-4 relative" ref={dropdownRef}>
