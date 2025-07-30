@@ -1,26 +1,70 @@
 import React from "react";
-import { allservices } from "../export.js";
+import { Book, FileText, Gamepad2, Scissors } from "lucide-react"; // bạn cần icon thư viện Lucide
 
-const Services = () => {
-    return (
-        <div id="services" className="w-full bg-white">
-            <div className="lg:w-[80%] w-[90%] m-auto py-[60px] flex flex-col justify-between items-center gap-[20px]">
-                <h1 className="text-red-500 text-2xl">DỊCH VỤ ĐẶC BIỆT</h1>
-                <h1 className="text-black uppercase text-[40px] font-bold text-center">NHỮNG DỊCH VỤ TỐT NHẤT CỦA CHÚNG TÔI</h1>
-                <div className="w-[120px] h-[6px] bg-red-500"></div>
-                <div className="w-full grid lg:grid-cols-3 grid-cols-1 justify-center items-start gap-[20px] mt-[30px]"> 
-                    {
-                    allservices.map((item, index) => (
-                        <div key={index} className="flex flex-col justify-center items-center gap-5 p-8 text-center shadow-md rounded-lg hover:shadow-lg transition-shadow duration-300">
-                        <item.icon className="w-[70px] h-[70px] text-red-500 border-2 border-red-500 hover:bg-red-500 hover:text-white rounded-lg p-4 transition-all duration-300" />
-                        <h2 className="text-xl font-bold text-black">{item.title}</h2>
-                        <p className="text-gray-500">{item.about}</p>
-                        </div>
-                    ))
-                    }
-                </div>
-            </div>
-        </div>
-    )
-}
- export default Services
+const resources = [
+  {
+    icon: <Book className="w-8 h-8 text-cyan-600" />,
+    title: "Lesson Plans",
+    description:
+      "Free, ready-made lesson plans make it easy to provide meaningful, standards-aligned instruction in both classroom and homeschool settings.",
+    button: "Plan my lesson today",
+  },
+  {
+    icon: <FileText className="w-8 h-8 text-cyan-600" />,
+    title: "Worksheets",
+    description:
+      "We've got a worksheet for anything your student is learning! Our printables make it easy to practice everything from handwriting to multiplication to sight words, and much more!",
+    button: "Check it out",
+  },
+  {
+    icon: <Gamepad2 className="w-8 h-8 text-cyan-600" />,
+    title: "Games",
+    description:
+      "Transform study time into an adventure! Sharpen math fluency and learn letters with immersive games like Flipping Pancakes Fractions and Irregular Nouns Ski Race.",
+    button: "Play now",
+  },
+  {
+    icon: <Scissors className="w-8 h-8 text-cyan-600" />,
+    title: "Activities",
+    description:
+      "Our curated activities bring topics to life through hands-on science experiments, creative art projects, inspirational writing prompts, and more!",
+    button: "Make something now",
+  },
+];
+
+const LearningLibrary = () => {
+  return (
+    <section className="bg-white py-16 px-4 md:px-12">
+      <div className="max-w-5xl mx-auto text-center mb-12">
+        <h2 className="text-4xl font-semibold text-gray-800 mb-4">
+          Our learning library
+        </h2>
+        <p className="text-gray-600 text-lg">
+          With thousands of digital and printable resources, find the best
+          resource for your student.
+        </p>
+        <button className="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-full shadow font-semibold transition">
+          Dive right in
+        </button>
+      </div>
+
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        {resources.map((res, index) => (
+          <div
+            key={index}
+            className="border rounded-lg p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md transition"
+          >
+            <div className="mb-4 bg-cyan-100 p-3 rounded-full">{res.icon}</div>
+            <h3 className="text-xl font-bold text-cyan-600 mb-2">{res.title}</h3>
+            <p className="text-gray-700 mb-4">{res.description}</p>
+            <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-full text-sm font-medium transition">
+              {res.button}
+            </button>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default LearningLibrary;

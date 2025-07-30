@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import ship from "../assets/ship.jpg";
 import ship2 from "../assets/ship2.jpg";
 import ship3 from "../assets/ship3.jpg";
-import shipper from "../assets/shipper.png"; // hình shipper
 
 const images = [ship, ship2, ship3];
 
@@ -28,23 +27,20 @@ const Hero = () => {
       }}
     >
       {/* Lớp phủ mờ */}
-      <div className="bg-black bg-opacity-50 w-full h-full absolute top-0 left-0 z-0"></div>
+      <div className="bg-black bg-opacity-60 w-full h-full absolute top-0 left-0 z-0"></div>
 
-      {/* Wrapper content: Trái - Phải */}
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl gap-8">
-        {/* Trái: Nội dung */}
-        <div className="text-white text-center lg:text-left max-w-xl flex-1">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-            Vận chuyển nhanh chóng, <br /> an toàn
-          </h1>
-          <p className="text-lg lg:text-xl mb-6">
-            Chúng tôi cung cấp dịch vụ vận tải uy tín hàng đầu Việt Nam
-          </p>
+      {/* Wrapper content */}
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl gap-8 py-10">
+        {/* Nội dung bên trái */}
+        <div className="text-white text-center lg:text-left max-w-2xl flex-1 space-y-6">
+         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-baloo font-bold mb-4 leading-tight">
+            Từ ý tưởng đến hành động – Vẽ mơ ước, lắp tương lai
+         </h1>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <button className="px-6 py-3 bg-red-600 hover:bg-red-700 rounded text-white font-semibold transition">
+            <button className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 rounded-full text-white font-semibold transition shadow-md">
               Tìm hiểu thêm
             </button>
-            <button className="px-6 py-3 bg-transparent border border-white hover:bg-white hover:text-black rounded text-white font-semibold transition">
+            <button className="px-6 py-3 bg-transparent border border-white hover:bg-white hover:text-black rounded-full text-white font-semibold transition shadow-md">
               Liên hệ
             </button>
           </div>

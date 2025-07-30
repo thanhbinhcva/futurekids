@@ -3,29 +3,24 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./sections/Header";
 import Hero from "./sections/Hero";
-import About from "./sections/About";
-import Services from "./sections/services";
+import FeatureSection from "./sections/About";
+import LearningLibrary from "./sections/services"
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
-import Tracking from "./sections/Tracking";
+import CommunitySection from "./sections/Tracking";
 
 import AdminLayout from "./layout/AdminLayout";
-import ShipmentsPage from "./components/Shipment";
-import ShipmentDetail from "./components/ShipmentDetail";
+import RoboticsDashboard from "./components/Robotics";
+import CourseDetails from "./components/CourseDetails";
 import AdminDashboard from "./components/AdminDashboard";
-import ShipmentForm from "./components/ShipmentForm";
-import ClientsPage from "./components/Client";
-import TrackingList from "./components/TrackingList";
-import TrackingPage from "./components/TrackingPage";
-import ClientLayout from "./layout/ClientLayout";
-
+import ClassEvaluation from "./components/ClassDetail";
 const HomePage = () => (
   <>
     <Header />
     <Hero />
-    <About />
-    <Services />
-    <Tracking />
+    <FeatureSection />
+    <LearningLibrary />
+    <CommunitySection />
     <Contact />
     <Footer />
   </>
@@ -47,60 +42,28 @@ const App = () => {
           }
         />
         <Route
-          path="/shipment"
+          path="/robotics"
           element={
             <AdminLayout>
-              <ShipmentsPage />
+              <RoboticsDashboard />
             </AdminLayout>
           }
         />
         <Route
-          path="/shipments/:id"
+          path="/robotics/:courseId"
           element={
             <AdminLayout>
-              <ShipmentDetail />
+              <CourseDetails />
             </AdminLayout>
           }
         />
         <Route 
-          path="/shipment/add" 
+          path="/courses/:courseId/classes/:classId" 
           element={
             <AdminLayout>
-              <ShipmentForm />
+              <ClassEvaluation/>
             </AdminLayout>
           } />
-        <Route 
-          path="/shipment/edit/:id" 
-          element={
-            <AdminLayout>
-              <ShipmentForm />
-            </AdminLayout>
-          } 
-        />
-        <Route 
-          path="/clients" 
-          element={
-              <AdminLayout>
-                <ClientsPage />
-              </AdminLayout>
-          } 
-        />
-        <Route 
-          path="/tracking" 
-          element={
-              <ClientLayout>
-                <TrackingList />
-              </ClientLayout>
-          } 
-        />
-        <Route 
-          path="/tracking/:code" 
-          element={
-            <ClientLayout>
-              <TrackingPage />
-            </ClientLayout>
-          } 
-        />
       </Routes>
     </Router>
   );
