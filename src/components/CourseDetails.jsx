@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom"; // ⬅️ thêm useNavigate
 import Wedo from "../assets/R.jpg";
-
+import ClassDialog from "./ClassDialog"
 const fakeCourses = [
   {
     id: "1",
@@ -24,13 +24,29 @@ const fakeCourses = [
     classes: [],
   },
 ];
+  const handleCreateClass = (newClass) => {
+    if (newClass.className.trim()) {
+      const createdClass = {
+        id: Date.now(), // tạo id tạm thời
+        name: newClass.className.trim(),
+        teacher: newClass.teacherName || "",
+        students: "0", // mặc định
+        startDate: newClass.startDate || "",
+      };
+
+      setClasses((prev) => [...prev, createdClass]);
+      setShowDialog(false);
+      console.log("Lớp học mới:", createdClass);
+    }
+  };
 
 const CourseDetailPage = () => {
   const { courseId } = useParams();
   const navigate = useNavigate(); // ⬅️ khởi tạo navigate
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [showDialog, setShowDialog] = useState(false);
+  const [classes, setClasses] = useState([]);
   useEffect(() => {
     const fetchFakeCourse = () => {
       const foundCourse = fakeCourses.find((c) => c.id === courseId);
@@ -69,7 +85,21 @@ const CourseDetailPage = () => {
         />
       )}
 
-      <h2 className="text-2xl font-semibold mb-4">Danh sách lớp học</h2>
+       <div className="flex items-center justify-between mb-4">
+        {/*Add class*/}
+        <h2 className="text-2xl font-semibold mb-4">Danh sách lớp học</h2>
+        <button
+          onClick={() => setShowDialog(true)} 
+          className="bg-green-400 hover:bg-green-500 text-white px-4 py-2 rounded-xl shadow transition-all duration-200">
+          + Thêm lớp học
+        </button>
+          {showDialog && (
+            <ClassDialog
+              onClose={() => setShowDialog(false)}
+              onCreate={handleCreateClass}
+            />
+          )}
+      </div>
 
       {course.classes?.length > 0 ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
